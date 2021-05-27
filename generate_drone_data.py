@@ -45,7 +45,7 @@ if __name__ == "__main__":
     parser.add_argument("-L", dest = "locations", type=str, help="directory with all the location files 0.txt, 1.txt, ...")
     parser.add_argument("-S", dest = "sensor", type=str, help="directory with the base sensor data to be used for all the other sensors")
     parser.add_argument("-O", dest = "output_dir", type=str, help="directory that is going to contain the new sensor data")
-    parser.add_argument("-N", dest = "total_sensors", type=int, help="directory that is going to contain the new sensor data")
+    parser.add_argument("-N", dest = "total_sensors", type=int, help="Max number of sensors to process", required=True)
     args = parser.parse_args()
     main(args.locations,args.sensor,args.output_dir,args.total_sensors)
 
