@@ -10,7 +10,8 @@ import shutil
 def main(locations, sensor,output_dir,n_sensors):
     location_files = [f for f in listdir(locations) if isfile(join(locations, f)) and f.endswith(".txt")]
     location_files.sort(key=lambda x : int(x[:-4]) )
-    location_files = location_files[:n_sensors] 
+    if n_sensors != None:
+      location_files = location_files[:n_sensors] 
     sensor_files = [f for f in listdir(sensor) if isfile(join(sensor, f)) and f.endswith(".bin")]
     for f in location_files:
         sensor_name = f[:-4]
@@ -45,7 +46,7 @@ if __name__ == "__main__":
     parser.add_argument("-L", dest = "locations", type=str, help="directory with all the location files 0.txt, 1.txt, ...")
     parser.add_argument("-S", dest = "sensor", type=str, help="directory with the base sensor data to be used for all the other sensors")
     parser.add_argument("-O", dest = "output_dir", type=str, help="directory that is going to contain the new sensor data")
-    parser.add_argument("-N", dest = "total_sensors", type=int, help="Max number of sensors to process", required=True)
+    parser.add_argument("-N", dest = "total_sensors", type=int, help="Max number of sensors to process")
     args = parser.parse_args()
     main(args.locations,args.sensor,args.output_dir,args.total_sensors)
 
